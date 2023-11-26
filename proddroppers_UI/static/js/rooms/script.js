@@ -37,25 +37,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Iterate over each room in roomsData
                     roomsData.forEach(function (room) {
+                        // Create an anchor element
+                        var anchorElement = document.createElement('a');
+                        anchorElement.href = window.location.origin + "/room/" + room.id; // Set href attribute
+                        anchorElement.style.textDecoration = "None"; // Set inline style
+                    
                         // Create a new friends row div
                         var friendsRow = document.createElement('div');
                         friendsRow.className = 'friends_row';
                     
-                        // Create an anchor element
-                        var anchorElement = document.createElement('a');
-                        anchorElement.href = window.location.origin + "/room/" + room.id; // Set href attribute
-                    
                         // Create the SVG element
                         var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                         svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-                        svgElement.setAttribute("width", "4vh");
-                        svgElement.setAttribute("height", "4vh");
-                        svgElement.setAttribute("viewBox", "0 0 40 40");
+                        svgElement.setAttribute("width", "3.4vh");
+                        svgElement.setAttribute("height", "3vh");
+                        svgElement.setAttribute("viewBox", "0 0 34 30");
                         svgElement.setAttribute("fill", "none");
                     
                         // Create the path element for the SVG
                         var pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                        pathElement.setAttribute("d", "M19.9999 5C19.9999 5 9.68992 13.9 3.92825 18.72C3.74491 18.8797 3.5972 19.0762 3.4947 19.2968C3.3922 19.5173 3.33719 19.7569 3.33325 20C3.33325 20.442 3.50885 20.8659 3.82141 21.1785C4.13397 21.4911 4.55789 21.6667 4.99992 21.6667H8.33325V33.3333C8.33325 33.7754 8.50885 34.1993 8.82141 34.5118C9.13397 34.8244 9.55789 35 9.99992 35H14.9999C15.4419 35 15.8659 34.8244 16.1784 34.5118C16.491 34.1993 16.6666 33.7754 16.6666 33.3333V26.6667H23.3333V33.3333C23.3333 33.7754 23.5088 34.1993 23.8214 34.5118C24.134 34.8244 24.5579 35 24.9999 35H29.9999C30.4419 35 30.8659 34.8244 31.1784 34.5118C31.491 34.1993 31.6666 33.7754 31.6666 33.3333V21.6667H34.9999C35.4419 21.6667 35.8659 21.4911 36.1784 21.1785C36.491 20.8659 36.6666 20.442 36.6666 20C36.6643 19.7522 36.6056 19.5082 36.495 19.2864C36.3844 19.0646 36.2248 18.871 36.0283 18.72C30.3066 13.9 19.9999 5 19.9999 5Z"); // Replace with your path data
+                        pathElement.setAttribute("d", "M16.9999 0C16.9999 0 6.68992 8.9 0.928252 13.72C0.744914 13.8797 0.597202 14.0762 0.494699 14.2968C0.392196 14.5173 0.337191 14.7569 0.333252 15C0.333252 15.442 0.508847 15.8659 0.821407 16.1785C1.13397 16.4911 1.55789 16.6667 1.99992 16.6667H5.33325V28.3333C5.33325 28.7754 5.50885 29.1993 5.82141 29.5118C6.13397 29.8244 6.55789 30 6.99992 30H11.9999C12.4419 30 12.8659 29.8244 13.1784 29.5118C13.491 29.1993 13.6666 28.7754 13.6666 28.3333V21.6667H20.3333V28.3333C20.3333 28.7754 20.5088 29.1993 20.8214 29.5118C21.134 29.8244 21.5579 30 21.9999 30H26.9999C27.4419 30 27.8659 29.8244 28.1784 29.5118C28.491 29.1993 28.6666 28.7754 28.6666 28.3333V16.6667H31.9999C32.4419 16.6667 32.8659 16.4911 33.1784 16.1785C33.491 15.8659 33.6666 15.442 33.6666 15C33.6643 14.7522 33.6056 14.5082 33.495 14.2864C33.3844 14.0646 33.2248 13.871 33.0283 13.72C27.3066 8.9 16.9999 0 16.9999 0Z"); // Replace with your path data
                         pathElement.setAttribute("fill", "#747474");
                     
                         // Create the circle element for the SVG
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Create the inroom div
                         var inroomDiv = document.createElement('div');
                         inroomDiv.className = 'inroom';
-                        
+                    
                         // Create the heading elements
                         var h2Element = document.createElement('h2');
                         h2Element.textContent = 'комната';
@@ -84,11 +85,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         inroomDiv.appendChild(h2Element);
                         inroomDiv.appendChild(h1Element);
                     
-                        // Append the anchor element to the friends row
-                        friendsRow.appendChild(anchorElement);
+                        // Append SVG and inroom div to the friends row
+                        friendsRow.appendChild(svgElement);
+                        friendsRow.appendChild(inroomDiv);
                     
-                        // Append the friends row to the container
-                        friendsContainer.appendChild(friendsRow);
+                        // Append the friends row to the anchor element
+                        anchorElement.appendChild(friendsRow);
+                    
+                        // Append the anchor element to the container
+                        friendsContainer.appendChild(anchorElement);
                     });
                     // Далее вы можете использовать данные о комнатах, например, отобразить их на странице
                 } else {
