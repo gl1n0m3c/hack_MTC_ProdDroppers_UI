@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "sslserver",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -39,8 +40,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://music-mts.ru/",
+    "https://music-mts.ru:5000/",
+]
 if DEBUG:
     DEFAULT_USER_IS_ACTIVE = True
     INTERNAL_IPS = ["127.0.0.1"]
@@ -109,6 +115,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-
+CORS_ALLOW_CREDENTIALS = True
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
