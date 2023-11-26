@@ -49,9 +49,9 @@ if (myID === userid) {
   xhr.send();
 } else {
   // Если myID не равен userid, делаем два последовательных запроса для каждого ID
-  document.getElementById('pass_label').display = "None";
-  document.getElementById('pass_label2').display = "None";
-  document.getElementById('column_edit').display = "None";
+  document.getElementById('pass_label').style.display = "None";
+  document.getElementById('pass_label2').style.display = "None";
+  document.getElementById('column_edit').style.display = "None";
   var xhr1 = new XMLHttpRequest();
   xhr1.open('GET', 'https://music-mts.ru:5000/users/profile/' + userid + '/', true);
 
