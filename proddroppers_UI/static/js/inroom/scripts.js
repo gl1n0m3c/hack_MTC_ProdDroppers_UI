@@ -17,7 +17,7 @@ var currentUrl = window.location.href;
 
 var roomID = currentUrl.match(/\d+/)[0];
 const chatSocket = new WebSocket(
-    'ws://' +
+    'wss://' +
     window.location.origin +
     '/'+
     roomID +
