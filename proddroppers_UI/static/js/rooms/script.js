@@ -5,32 +5,57 @@ profile.href = window.location.origin + "/profile/" + userid
 library.href = window.location.origin + "/music/" + userid
 
 document.addEventListener('DOMContentLoaded', function () {
-    var xhr = new XMLHttpRequest();
+    var xhrProfile = new XMLHttpRequest();
 
     // Настройка запроса (GET-запрос по указанному URL)
-    xhr.open('GET', 'https://music-mts.ru:5000/users/profile/' + userid + '/', true);
+    xhrProfile.open('GET', 'https://music-mts.ru:5000/users/profile/' + userid + '/', true);
 
     // Установка обработчика события загрузки
-    xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
+    xhrProfile.onload = function () {
+        if (xhrProfile.status >= 200 && xhrProfile.status < 300) {
             // Обработка данных в формате JSON
-            var responseData = JSON.parse(xhr.responseText);
+            var responseData = JSON.parse(xhrProfile.responseText);
             console.log(responseData);
             var usernameHeadings = document.querySelectorAll('[id="my_username"]');
             usernameHeadings.forEach(function (heading) {
-                heading.textContent = responseData.username; // Замените "Новое значение" на ваше новое значение
+                heading.textContent = responseData.username;
             });
+
+            // Создаем второй запрос
+            var xhrRooms = new XMLHttpRequest();
+
+            // Настройка второго запроса (GET-запрос по указанному URL)
+            xhrRooms.open('GET', 'https://music-mts.ru:5000/rooms/', true);
+
+            // Установка обработчика события загрузки для второго запроса
+            xhrRooms.onload = function () {
+                if (xhrRooms.status >= 200 && xhrRooms.status < 300) {
+                    // Обработка данных в формате JSON для второго запроса
+                    var roomsData = JSON.parse(xhrRooms.responseText);
+                    alert(roomsData);
+
+                    // Далее вы можете использовать данные о комнатах, например, отобразить их на странице
+                } else {
+                    // Обработка ошибок для второго запроса
+                    console.error('There was a problem with the request:', xhrRooms.statusText);
+                }
+            };
+
+            // Отправка второго запроса
+            xhrRooms.send();
+
             document.getElementById('create_room').onclick = function() {
                 createRoom(responseData.username);
             };        
         } else {
-            // Обработка ошибок
-            alert('There was a problem with the request:', xhr.statusText);
+            // Обработка ошибок для первого запроса
+            alert('There was a problem with the request:', xhrProfile.statusText);
         }
     };
 
-    // Отправка запроса
-    xhr.send();
+    // Отправка первого запроса
+    xhrProfile.send();
+
     // Получаем элементы с классами Lines и navigation-bar
     var linesElement = document.querySelector('.nav-bar-lines');
     var navigationBarElement = document.querySelector('.navigation-bar');
