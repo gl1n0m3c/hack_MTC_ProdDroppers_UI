@@ -99,7 +99,7 @@
         var currentUrl = window.location.href;
 
         const roomID = currentUrl.match(/\d+/)[0];
-        console.log('ws://' +
+        console.log('wss://' +
             window.location.host +
             '/'+
             roomID +
@@ -107,7 +107,7 @@
             user_id +
             "/")
         const chatSocket = new WebSocket(
-            'ws://' +
+            'wss://' +
             window.location.host +
             '/'+
             roomID +
