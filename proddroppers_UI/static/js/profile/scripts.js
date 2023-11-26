@@ -2,60 +2,106 @@ myID = sessionStorage.getItem('userid');
 
 var library = document.getElementById('library')
 var profile = document.getElementById('profile')
-library.href = "../music/"+myID
-profile.href = "../profile/"+myID
+library.href = "../music/" + myID;
+profile.href = "../profile/" + myID;
+
 // Получаем текущий URL страницы
 var currentUrl = window.location.href;
+
 // Извлекаем цифры из URL
 var userid = currentUrl.match(/\d+/)[0];
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://music-mts.ru:5000/users/profile/'+myID+'/', true);
 
-// Установка обработчика события загрузки
-xhr.onload = function () {
-  if (xhr.status >= 200 && xhr.status < 300) {
-    // Обработка данных в формате JSON
-    var responseData = JSON.parse(xhr.responseText);
-    console.log(responseData);
-    var usernameHeadings = document.querySelectorAll('[id="my_username"]');
-    usernameHeadings.forEach(function (heading) {
-        heading.textContent = responseData.username; // Замените "Новое значение" на ваше новое значение
-    });
-  } else {
-    // Обработка ошибок
-    alert('There was a problem with the request:', xhr.statusText);
-  }
-};
+// Если myID равен userid, то делаем один запрос для обоих ID
+if (myID === userid) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://music-mts.ru:5000/users/profile/' + myID + '/', true);
 
-// Отправка запроса
-xhr.send();
+  // Установка обработчика события загрузки
+  xhr.onload = function () {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      // Обработка данных в формате JSON
+      var responseData = JSON.parse(xhr.responseText);
+      console.log(responseData);
 
-
-var xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://music-mts.ru:5000/users/profile/'+userid+'/', true);
-
-// Установка обработчика события загрузки
-xhr.onload = function () {
-  if (xhr.status >= 200 && xhr.status < 300) {
-    // Обработка данных в формате JSON
-    var responseData = JSON.parse(xhr.responseText);
-    console.log(responseData);
-    var usernameHeadings = document.querySelectorAll('[id="username"]');
-    usernameHeadings.forEach(function (heading) {
+      // Обновляем элементы с ID my_username, username и email
+      var myUsernameHeadings = document.querySelectorAll('[id="my_username"]');
+      myUsernameHeadings.forEach(function (heading) {
         heading.textContent = responseData.username;
-    });
-    var emnailHeadings = document.querySelectorAll('[id="email"]');
-    emnailHeadings.forEach(function (heading) {
-        heading.textContent = responseData.email; 
-    });
-  } else {
-    // Обработка ошибок
-    alert('There was a problem with the request:', xhr.statusText);
-  }
-};
+      });
 
-// Отправка запроса
-xhr.send();
+      var usernameHeadings = document.querySelectorAll('[id="username"]');
+      usernameHeadings.forEach(function (heading) {
+        heading.textContent = responseData.username;
+      });
+
+      var emailHeadings = document.querySelectorAll('[id="email"]');
+      emailHeadings.forEach(function (heading) {
+        heading.textContent = responseData.email;
+      });
+    } else {
+      // Обработка ошибок
+      alert('There was a problem with the request:', xhr.statusText);
+    }
+  };
+
+  // Отправка запроса
+  xhr.send();
+} else {
+  // Если myID не равен userid, делаем два последовательных запроса для каждого ID
+  var xhr1 = new XMLHttpRequest();
+  xhr1.open('GET', 'https://music-mts.ru:5000/users/profile/' + userid + '/', true);
+
+  // Установка обработчика события загрузки
+  xhr1.onload = function () {
+    if (xhr1.status >= 200 && xhr1.status < 300) {
+      // Обработка данных в формате JSON
+      var responseData = JSON.parse(xhr1.responseText);
+      console.log(responseData);
+
+      // Обновляем элементы с ID username и email
+      var usernameHeadings = document.querySelectorAll('[id="username"]');
+      usernameHeadings.forEach(function (heading) {
+        heading.textContent = responseData.username;
+      });
+
+      var emailHeadings = document.querySelectorAll('[id="email"]');
+      emailHeadings.forEach(function (heading) {
+        heading.textContent = responseData.email;
+      });
+    } else {
+      // Обработка ошибок
+      alert('There was a problem with the request:', xhr1.statusText);
+    }
+  };
+
+  // Отправка запроса
+  xhr1.send();
+
+  // Затем делаем запрос для myID
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open('GET', 'https://music-mts.ru:5000/users/profile/' + myID + '/', true);
+
+  // Установка обработчика события загрузки
+  xhr2.onload = function () {
+    if (xhr2.status >= 200 && xhr2.status < 300) {
+      // Обработка данных в формате JSON
+      var responseData = JSON.parse(xhr2.responseText);
+      console.log(responseData);
+
+      // Обновляем элементы с ID my_username
+      var myUsernameHeadings = document.querySelectorAll('[id="my_username"]');
+      myUsernameHeadings.forEach(function (heading) {
+        heading.textContent = responseData.username;
+      });
+    } else {
+      // Обработка ошибок
+      alert('There was a problem with the request:', xhr2.statusText);
+    }
+  };
+
+  // Отправка запроса
+  xhr2.send();
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     // Получаем элементы с классами Lines и navigation-bar
