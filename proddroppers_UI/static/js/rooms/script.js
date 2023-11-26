@@ -32,8 +32,61 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (xhrRooms.status >= 200 && xhrRooms.status < 300) {
                     // Обработка данных в формате JSON для второго запроса
                     var roomsData = JSON.parse(xhrRooms.responseText);
-                    alert(roomsData);
+                    console.log(roomsData);
+                    var friendsContainer = document.querySelector('.friends');
 
+                    // Iterate over each room in roomsData
+                    roomsData.forEach(function (room) {
+                        // Create a new friends row div
+                        var friendsRow = document.createElement('div');
+                        friendsRow.className = 'friends_row';
+
+                        // Create the SVG element
+                        var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+                        svgElement.setAttribute("width", "40");
+                        svgElement.setAttribute("height", "40");
+                        svgElement.setAttribute("viewBox", "0 0 40 40");
+                        svgElement.setAttribute("fill", "none");
+
+                        // Create the path element for the SVG
+                        var pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                        pathElement.setAttribute("d", "M33.4363 31.1624 ..."); // Replace with your path data
+                        pathElement.setAttribute("fill", "#747474");
+
+                        // Create the circle element for the SVG
+                        var circleElement = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                        circleElement.setAttribute("cx", "36");
+                        circleElement.setAttribute("cy", "36");
+                        circleElement.setAttribute("r", "4");
+                        circleElement.setAttribute("fill", "#00A607");
+
+                        // Append path and circle elements to the SVG
+                        svgElement.appendChild(pathElement);
+                        svgElement.appendChild(circleElement);
+
+                        // Create the inroom div
+                        var inroomDiv = document.createElement('div');
+                        inroomDiv.className = 'inroom';
+                        
+                        // Create the heading elements
+                        var h2Element = document.createElement('h2');
+                        h2Element.textContent = 'комната';
+
+                        var h1Element = document.createElement('h1');
+                        h1Element.textContent = room.name; // Use the room name here
+
+                        // Append heading elements to the inroom div
+                        inroomDiv.appendChild(h2Element);
+                        inroomDiv.appendChild(h1Element);
+
+                        // Append SVG and inroom div to the friends row
+                        friendsRow.appendChild(svgElement);
+                        friendsRow.appendChild(inroomDiv);
+
+                        // Append the friends row to the container
+                        friendsContainer.appendChild(friendsRow);
+                    });
                     // Далее вы можете использовать данные о комнатах, например, отобразить их на странице
                 } else {
                     // Обработка ошибок для второго запроса
