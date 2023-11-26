@@ -18,7 +18,7 @@ xhr.onload = function () {
         usernameHeadings.forEach(function (heading) {
             heading.textContent = responseData.username; // Замените "Новое значение" на ваше новое значение
         });
-        document.getElementById('submit').onclick = function() {
+        document.getElementById('create_room').onclick = function() {
             createRoom(responseData.username);
         };        
     } else {
