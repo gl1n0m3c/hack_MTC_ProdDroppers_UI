@@ -94,7 +94,7 @@ function loginUser(){
                 var jsonResponse = JSON.parse(xhr.responseText);
                 sessionStorage.setItem('userid', jsonResponse.id);
                 // file:///C:/Users/Juonior/Desktop/templates/profile/index.html
-                window.location.pathname = "main/"+jsonResponse.id;
+                window.location.pathname = "main/";
             } else {
                 var jsonResponse = JSON.parse(xhr.responseText);
                 registerError(jsonResponse.description);
