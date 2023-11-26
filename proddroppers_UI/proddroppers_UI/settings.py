@@ -44,8 +44,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://music-mts.ru/",
-    "https://music-mts.ru:5000/",
+    "https://music-mts.ru",
+    "https://music-mts.ru:5000",
 ]
 if DEBUG:
     DEFAULT_USER_IS_ACTIVE = True
