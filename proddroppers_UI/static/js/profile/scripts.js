@@ -3,7 +3,12 @@ myID = sessionStorage.getItem('userid');
 var library = document.getElementById('library')
 var profile = document.getElementById('profile')
 library.href = "../music/" + myID;
-profile.href = "../profile/" + myID;
+
+var baseURL = new URL(window.location.href);
+
+// Создаем абсолютный URL для ../profile/ и присваиваем его атрибуту href элемента
+profile.href = new URL("../profile/" + myID, baseURL).href;
+library.href = new URL("../music/" + myID, baseURL).href;
 
 // Получаем текущий URL страницы
 var currentUrl = window.location.href;
