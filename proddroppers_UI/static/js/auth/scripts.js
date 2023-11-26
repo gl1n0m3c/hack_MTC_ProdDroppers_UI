@@ -133,7 +133,7 @@ function registerUser() {
     };
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https:/music-mts.ru:5000/auth/register/', true);
+    xhr.open('POST', 'https://music-mts.ru:5000/auth/register/', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.onreadystatechange = function () {
