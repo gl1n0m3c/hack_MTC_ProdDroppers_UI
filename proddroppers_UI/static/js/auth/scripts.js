@@ -31,3 +31,4 @@ document.getElementById('reg_btn').addEventListener('click', function() {
     document.getElementById('account_btn').innerHTML = "Войти";
     login_type = "Login"
 });
+alert("WOOW")
