@@ -1,33 +1,36 @@
 user_id = sessionStorage.getItem('userid');
-if(user_id == null)
-{
+if (user_id == null) {
     user_id = 0;
 }
-document.querySelector('#submit').onclick = function (e) {
-    const messageInputDom = document.querySelector('#input');
-    const message = messageInputDom.value;
-    chatSocket.send(JSON.stringify({
-        'message': message,
-        'user_id': parseInt(user_id),
-    }));
-    messageInputDom.value = '';
-};
 
 var currentUrl = window.location.href;
-
 var roomID = currentUrl.match(/\d+/)[0];
-const chatSocket = new WebSocket(
-    'wss://' +
-    window.location.origin +
-    '/'+
-    roomID +
-    '/'+
-    user_id +
-    "/"
-);
 
-chatSocket.onmessage = function (e) {
-    const data = JSON.parse(e.data);
-    alert(data)
-    // document.querySelector('#chat-text').value += (data.username + ': ' + data.message +'\n')
-}
+// First XMLHttpRequest to fetch room list
+var roomsXHR = new XMLHttpRequest();
+roomsXHR.open('GET', 'https://music-mts.ru:5000/rooms/', true);
+
+roomsXHR.onload = function () {
+    if (roomsXHR.status >= 200 && roomsXHR.status < 300) {
+        var roomsData = JSON.parse(roomsXHR.responseText);
+
+        // Find the room with the matching ID
+        var selectedRoom = roomsData.find(function (room) {
+            return room.id === parseInt(roomID);
+        });
+
+        if (selectedRoom) {
+            // Set innerHTML for the element with id="room_name"
+            var roomNameElement = document.getElementById('room_name');
+            if (roomNameElement) {
+                roomNameElement.innerHTML = selectedRoom.name;
+            }
+        } else {
+            console.error('Room not found for ID:', roomID);
+        }
+    } else {
+        console.error('Error fetching rooms:', roomsXHR.statusText);
+    }
+};
+
+roomsXHR.send();
