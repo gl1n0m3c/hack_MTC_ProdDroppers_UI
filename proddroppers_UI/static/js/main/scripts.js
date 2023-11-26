@@ -18,4 +18,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Инвертируем значение переменной
         isNavigationBarVisible = !isNavigationBarVisible;
     });
+    linesElement.addEventListener('mouseenter', function()  {
+        if (isNavigationBarVisible) {
+            navigationBarElement.style.display = 'none';
+        } else {
+            navigationBarElement.style.display = 'flex';
+        }
+
+
+        isNavigationBarVisible = !isNavigationBarVisible;
+    });
 });
