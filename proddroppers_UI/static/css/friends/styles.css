@@ -6,17 +6,32 @@
 body {
     background: #000;
 }
-  
+    
 /* HEADER */ 
 header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #000;
     width: 100%;
-    height: 15vh;
+    height: 18vh;
 }
-header #logo {
+header .container {
+    padding-top: 1.3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .container  h1{
+    color: #FFF;
+    text-align: center;
+    font-family: "MTSWide-Medium";
+    font-size: 2.4vh;
+    font-style: normal;
+    font-weight: 500;
+}
+header .container #logo {
     margin-right: 2.4vh;
 }
 header .music_label h1 {
@@ -38,162 +53,150 @@ header .music_label h2 {
     letter-spacing: 0.2px;
 }
 
+header .container h1 {
+    color: #fff;
+}
+
+header .nav-bar-lines {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    right: 3vh;
+    color: white;
+    height: 3vh;
+}
+
+header .line {
+    margin-top: 0.7vh;
+    width: 3vh;
+    height:  0.16vh;
+    background-color: #FFF;
+    border-radius: 0.5vh;
+}
+
+
+
 /* MAIN */
-
-
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     text-align: center;
     background-color: #fff;
     width: 100%;
     box-sizing: border-box;
-    height: 85vh;
+    height: 75vh;
     
 }
-main form {
-    margin-top: 10vh;
-}
-main form .header_label {
-    justify-content: center;
+
+main .header_labels {
+    margin-top: 4vh;
     display: flex;
 }
-main form .header_label h1 {
+
+main .header_labels h1{
     color: #000;
     font-family: "MTSWide-Medium";
     font-size: 2vh;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-transform: capitalize;
+    letter-spacing: 0.12vh;
 }
-main form .header_label h2 {
-    padding-left: 3.6vh;
-    color:#D4D4D4;
+
+main .header_labels h2{
+    padding-left: 2vh;
+    color: #D4D4D4;
     font-family: "MTSWide-Medium";
     font-size: 2vh;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    letter-spacing: 0.12vh;
 }
 
-main form .inputs {
+
+main button {
+    width: 25.9vh;
+    height: 5.1vh;
+    margin-top: 2vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background-color: #fff;
-    width: 100%;
-    box-sizing: border-box;
 
-    
-}
-
-main form input {
-    margin-top: 3.1vh;
-    border-radius: 1vh;
-    border: 0.25vh solid #D4D4D4;
-
+    border-radius: 40px;
     background: #FFF;
+    border: 0;
+    box-shadow: 0.2vh 0.2vh 1vh 0.2vh rgba(0, 0, 0, 0.25);
 
-    display: flex;
-    width: 25vh;
-    height: 5vh;
-    padding: 0vh 2.4vh;
-    align-items: center;
-    gap: 1vh;
-    flex-shrink: 0;
-    font-size: 1.4vh;
+
+    color: #000;
     font-family: "MTSText-Regular";
-}
-main form input:hover{
-    border-radius: 1vh;
-    border: 0.2vh solid #BFBFBF;
-    background: #FFF;
-    box-shadow: 0px 0.2vh 0.6vh 0px rgba(0, 0, 0, 0.25);
-}
-main form input:active{
-    border-radius: 1vh;
-    border: 0.2vh solid #000000;
-    background: #FFF;
-}
-main form input:invalid {
-    border-radius: 1vh;
-    border: 0.2vh solid #FF0032;
-    background: #FFF;
-}
-main form input::placeholder{
-    color:#c7c7c7
+    font-size: 1.6vh;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.08vh;
 }
 
-main form button {
-    margin-top: 3.1vh;
+main .friends {
+    margin-top: 2.4vh;
+    display: inline-flex;
+    height: 30.8vh;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4vh;
+    flex-shrink: 0;
+    overflow-y: scroll;
+}
+
+main .friends::-webkit-scrollbar {
+    width: 12px; /* Ширина полосы прокрутки */
+}
+
+main .friends .friends_row {
     display: flex;
-    width: 100%;
-    height: 5vh;
-    
     justify-content: center;
     align-items: center;
 
-    border-radius: 1vh;
-    border: 0px;
-    background: #FF0032;
 
-
-    color: #FFF;
-    text-align: center;
-    font-family: "MTSText-Medium";
-    font-size: 1.6vh;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
 }
 
-main form .footer {
-    margin-top: 1.5vh;
-    display: flex;
-    justify-content: center;
+main .friends .friends_row > * {
+    margin-right: 1.8vh; 
 }
 
-main form .footer h1{
+main .friends .friends_row h1 {
     color: #000;
-    text-align: center;
-    font-family: "MTSWide-Regular";
+    font-family: "MTSText-Regular";
     font-size: 1.6vh;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    letter-spacing: 0.08vh;
 }
 
-main form .footer h2{
-    padding-left: 0.5vh;
-    color: #000;
-    font-family: "MTSWide-Regular";
-    font-size: 1.6vh;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-decoration-line: underline;
-}
 
 main .equalizer {
+    position: absolute;
     justify-content: center;
     display: flex;
     align-items: flex-end;
     float: left;
     width: 95%;
+    bottom: 7vh;
 }
 main .equalizer .line {
     background-color: #FF0032;
     border-radius: 1vh 1vh 0px 0px;
     width: 1.3vh;
-    margin-right: 2vh;
-    height: 10px;
     transition: height 1s ease;
 }
+
 
 /* FOOOTER */
 footer {
