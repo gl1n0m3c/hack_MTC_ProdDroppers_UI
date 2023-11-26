@@ -2,8 +2,7 @@
 var currentUrl = window.location.href;
 // Извлекаем цифры из URL
 var userid = currentUrl.match(/\d+/)[0];
-alert(userid)
-
+var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://music-mts.ru:5000/users/profile/'+userid+'/', true);
 
 // Установка обработчика события загрузки
