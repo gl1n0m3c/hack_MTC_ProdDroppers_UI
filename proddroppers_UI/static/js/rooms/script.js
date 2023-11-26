@@ -84,10 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         inroomDiv.appendChild(h2Element);
                         inroomDiv.appendChild(h1Element);
                     
-                        // Append SVG and inroom div to the anchor element
-                        anchorElement.appendChild(svgElement);
-                        anchorElement.appendChild(inroomDiv);
-                    
                         // Append the anchor element to the friends row
                         friendsRow.appendChild(anchorElement);
                     
