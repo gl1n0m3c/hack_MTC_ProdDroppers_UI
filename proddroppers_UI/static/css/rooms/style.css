@@ -244,6 +244,8 @@ main .navigation-bar h2 {
 main .navigation-bar h2:hover {
 transform: scale(1.2); /* изменяем масштаб при наведении мыши */
 }
+
+
 main .navigation-bar .footer {  
     margin-top: auto;
     padding-bottom: 1vh;
