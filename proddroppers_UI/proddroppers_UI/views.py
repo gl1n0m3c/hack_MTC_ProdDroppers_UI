@@ -6,12 +6,12 @@ def start(request):
     return render(request, template)
 
 
-def friends(request):
+def friends(request, pk):
     template = "friends/index.html"
     return render(request, template)
 
 
-def profile(request):
+def profile(request, pk):
     template = "profile/index.html"
     return render(request, template)
 
@@ -21,7 +21,7 @@ def rooms(request):
     return render(request, template)
 
 
-def room(request):
+def room(request, pk):
     template = "inroom/index.html"
     return render(request, template)
 
@@ -31,7 +31,7 @@ def main(request):
     return render(request, template)
 
 
-def music(request):
+def music(request, pk):
     template = "music/index.html"
     return render(request, template)
 

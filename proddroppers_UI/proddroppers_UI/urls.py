@@ -14,15 +14,17 @@ from proddroppers_UI.views import (
 )
 
 
+app_name = "main"
+
 urlpatterns = [
-    path("auth/", auth),
-    path("main/", main),
-    path("rooms/", rooms),
-    path("main/<int:pk>/", music),
-    path("room/<int:pk>/", room),
-    path("profile/<int:pk>/", profile),
-    path("friends/<int:pk>/", friends),
-    path("", start),
+    path("auth/", auth, name="auth"),
+    path("main/", main, name="main"),
+    path("rooms/", rooms, name="rooms"),
+    path("main/<int:pk>/", music, name="music"),
+    path("room/<int:pk>/", room, name="room"),
+    path("profile/<int:pk>/", profile, name="profile"),
+    path("friends/<int:pk>/", friends, name="friends"),
+    path("", start, name="start"),
     path("admin/", admin.site.urls),
 ]
 
