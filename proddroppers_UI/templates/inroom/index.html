@@ -39,8 +39,6 @@
         </div>
     </div>
     
-    {{ request.user.id|json_script:"user_id" }}
-    {{ room_id|json_script:"room-name" }}
     <script>
         var audio = document.getElementById('myAudio');
         user_id = sessionStorage.getItem('userid');
@@ -99,22 +97,18 @@
         var currentUrl = window.location.href;
 
         const roomID = currentUrl.match(/\d+/)[0];
-        console.log('wss://' +
-            window.location.host +
+        console.log('wss://music-mts.ru:5000' +
             '/'+
             roomID +
             '/'+
             user_id +
             "/")
-        const chatSocket = new WebSocket(
-            'wss://' +
-            window.location.host +
+        const chatSocket = new WebSocket('wss://music-mts.ru:5000' +
             '/'+
             roomID +
             '/'+
             user_id +
-            "/"
-        );
+            "/");
 
         chatSocket.onmessage = function (e) {
             const data = JSON.parse(e.data);
