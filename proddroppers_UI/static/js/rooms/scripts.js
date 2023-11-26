@@ -2,8 +2,8 @@
 userid = sessionStorage.getItem('userid');
 var library = document.getElementById('library')
 var profile = document.getElementById('profile')
-profile.href = window.location.origin+"/profile/" + myID
-library.href = window.location.origin+"/music/" + myID
+profile.href = window.location.origin+"/profile/" + userid
+library.href = window.location.origin+"/music/" + userid
 var xhr = new XMLHttpRequest();
 
 // Настройка запроса (GET-запрос по указанному URL)
