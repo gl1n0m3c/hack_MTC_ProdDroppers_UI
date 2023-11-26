@@ -3,34 +3,34 @@ var library = document.getElementById('library')
 var profile = document.getElementById('profile')
 profile.href = window.location.origin + "/profile/" + userid
 library.href = window.location.origin + "/music/" + userid
-var xhr = new XMLHttpRequest();
-
-// Настройка запроса (GET-запрос по указанному URL)
-xhr.open('GET', 'https://music-mts.ru:5000/users/profile/' + userid + '/', true);
-
-// Установка обработчика события загрузки
-xhr.onload = function () {
-    if (xhr.status >= 200 && xhr.status < 300) {
-        // Обработка данных в формате JSON
-        var responseData = JSON.parse(xhr.responseText);
-        console.log(responseData);
-        var usernameHeadings = document.querySelectorAll('[id="my_username"]');
-        usernameHeadings.forEach(function (heading) {
-            heading.textContent = responseData.username; // Замените "Новое значение" на ваше новое значение
-        });
-        document.getElementById('create_room').onclick = function() {
-            createRoom(responseData.username);
-        };        
-    } else {
-        // Обработка ошибок
-        alert('There was a problem with the request:', xhr.statusText);
-    }
-};
-
-// Отправка запроса
-xhr.send();
 
 document.addEventListener('DOMContentLoaded', function () {
+    var xhr = new XMLHttpRequest();
+
+    // Настройка запроса (GET-запрос по указанному URL)
+    xhr.open('GET', 'https://music-mts.ru:5000/users/profile/' + userid + '/', true);
+
+    // Установка обработчика события загрузки
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // Обработка данных в формате JSON
+            var responseData = JSON.parse(xhr.responseText);
+            console.log(responseData);
+            var usernameHeadings = document.querySelectorAll('[id="my_username"]');
+            usernameHeadings.forEach(function (heading) {
+                heading.textContent = responseData.username; // Замените "Новое значение" на ваше новое значение
+            });
+            document.getElementById('create_room').onclick = function() {
+                createRoom(responseData.username);
+            };        
+        } else {
+            // Обработка ошибок
+            alert('There was a problem with the request:', xhr.statusText);
+        }
+    };
+
+    // Отправка запроса
+    xhr.send();
     // Получаем элементы с классами Lines и navigation-bar
     var linesElement = document.querySelector('.nav-bar-lines');
     var navigationBarElement = document.querySelector('.navigation-bar');
