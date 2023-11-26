@@ -15,7 +15,7 @@ xhr.onload = function () {
     // Обработка данных в формате JSON
     var responseData = JSON.parse(xhr.responseText);
     console.log(responseData);
-    var usernameHeadings = document.querySelectorAll('[id="username"]');
+    var usernameHeadings = document.querySelectorAll('[id="my_username"]');
     usernameHeadings.forEach(function (heading) {
         heading.textContent = responseData.username; // Замените "Новое значение" на ваше новое значение
     });
