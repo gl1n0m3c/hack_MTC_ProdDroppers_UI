@@ -6,7 +6,6 @@ library.href = "../music/" + myID;
 
 var baseURL = new URL(window.location.href);
 
-// Создаем абсолютный URL для ../profile/ и присваиваем его атрибуту href элемента
 profile.href = new URL("../profile/" + myID, baseURL).href;
 library.href = new URL("../music/" + myID, baseURL).href;
 
