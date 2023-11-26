@@ -1,5 +1,9 @@
 
 userid = sessionStorage.getItem('userid');
+var library = document.getElementById('library')
+var profile = document.getElementById('profile')
+library.href = "music/"+userid
+profile.href = "profile/"+userid
 var xhr = new XMLHttpRequest();
 
 // Настройка запроса (GET-запрос по указанному URL)
