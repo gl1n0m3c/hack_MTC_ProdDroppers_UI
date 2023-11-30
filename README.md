@@ -48,7 +48,7 @@ source venv/bin/activate
 7 - Для запуска проекта требуется установить необходимые библиотеки. Воспользуйтесь следующей командой:
 
 ```bash
-pip install -r "requirements/dev.txt"
+pip install -r "requirements/prod.txt"
 ```
 
 ## Запуск проекта
